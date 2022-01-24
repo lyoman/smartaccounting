@@ -3,9 +3,9 @@ from rest_framework.pagination import (
     PageNumberPagination,
 )
 
-class OrganogramLimitOffSetPagination(LimitOffsetPagination):
+class NewStockLimitOffSetPagination(LimitOffsetPagination):
     default_limit = 3
     max_limit = 10
 
-class OrganogramPageNumberPagination(PageNumberPagination):
+class NewStockPageNumberPagination(PageNumberPagination):
     page_size = 10

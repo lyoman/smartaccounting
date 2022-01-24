@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView
 
-from new-stock.models import NewStock, SoldStock
+from newstock.models import NewStock, SoldStock
 # from .serializers import NewStockSerializer
 
 from django.db.models import Q

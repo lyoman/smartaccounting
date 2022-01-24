@@ -6,7 +6,7 @@ from rest_framework.serializers import (
 
 from accounts.api.serializers import UserDetailSerializer
 # from medicine.api.serializers import ProductSerializer
-from new-stock.models import NewStock, SoldStock
+from newstock.models import NewStock, SoldStock
 # from .serializers import PostSerializer
 from rest_framework.serializers import ModelSerializer
 # from rest_framework import serializers
