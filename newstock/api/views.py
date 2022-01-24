@@ -133,9 +133,9 @@ class SoldStockListAPIView(ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        queryset = SoldStock.objects.filter(active=True)
+        queryset = SoldStock.objects.filter()
         id = self.request.query_params.get('stockname', None)
         if id is not None:
-            queryset = queryset.filter(stockname=id)
+            queryset = queryset.filter(stockname_id=id)
             print("hey you", queryset)
         return queryset

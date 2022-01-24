@@ -79,6 +79,7 @@ class NewStockListSerializer(ModelSerializer):
 #####Process flow Charts
 class SoldStockCreateUpdateSerializer(ModelSerializer):
     user 		    = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.CASCADE)
+
     class Meta:
         model = SoldStock
         fields = [
@@ -101,6 +102,7 @@ soldstock_detail_url = HyperlinkedIdentityField(
 class SoldStockDetailSerializer(ModelSerializer):
     url = soldstock_detail_url
     user = UserDetailSerializer(read_only=True)
+    stockname = NewStockDetailSerializer(read_only=True)
 
     class Meta:
         model = SoldStock
@@ -114,7 +116,6 @@ class SoldStockDetailSerializer(ModelSerializer):
             'stockname',
             'total_amount',
             'quantity',
-            'active',
             'updated',
             'timestamp'
         ]
@@ -122,6 +123,7 @@ class SoldStockDetailSerializer(ModelSerializer):
 class SoldStockListSerializer(ModelSerializer):
     url = soldstock_detail_url
     user    =   UserDetailSerializer(read_only=True)
+    stockname = NewStockDetailSerializer(read_only=True)
     delete_url = HyperlinkedIdentityField(
         view_name='newstock-api:delete_sold',
         lookup_field='id'#or primary key <pk>
@@ -139,7 +141,6 @@ class SoldStockListSerializer(ModelSerializer):
             'description',
             'amount',
             'total_amount',
-            'active',
             'updated',
             'timestamp'
         ]
