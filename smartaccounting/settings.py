@@ -48,6 +48,7 @@ ADMIN_SITE_HEADER = "Smart Accounting"
 # Application definition
 
 INSTALLED_APPS = [
+    'newstock',
     'accounts',
     'corsheaders',
     'django.contrib.admin',

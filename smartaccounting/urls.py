@@ -38,7 +38,7 @@ urlpatterns = [
     #apis
     path('api/auth/token/', obtain_jwt_token),
     path('api/users/', include(("accounts.api.urls",'accounts-api'), namespace='accounts-api')),
-    # path('api/ims_04/', include(("ims_04.api.urls",'ims_04-api'), namespace='ims_04-api')),
+    path('api/new_stock/', include(("newstock.api.urls",'newstock-api'), namespace='newstock-api')),
     # path('api/ims_05/', include(("ims_05.api.urls",'ims_05-api'), namespace='ims_05-api')),
     # path('api/ims_06/', include(("ims_06.api.urls",'ims_06-api'), namespace='ims_06-api')),
     # path('api/ims_07/', include(("ims_07.api.urls",'ims_07-api'), namespace='ims_07-api')),
