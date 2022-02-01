@@ -13,6 +13,7 @@ from .views import (
     SoldStockDetailAPIView,
     SoldStockUpdateAPIView,
     SoldStockCreateAPIView,
+    SoldStockUserListAPIView,
 	)
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
 
     ##### process flow
     path('sold_stock/', SoldStockListAPIView.as_view(), name='sold_stock'),
+    path('sold_stock_user/', SoldStockUserListAPIView.as_view(), name='sold_stock_user'),
     path('sold_stock/new/', SoldStockCreateAPIView.as_view(), name='new_sold'),
     path('sold_stock/<int:id>/detail/', SoldStockDetailAPIView.as_view(), name='detail_sold'),
     path('sold_stock/<int:id>/edit/', SoldStockUpdateAPIView.as_view(), name='update_sold'),

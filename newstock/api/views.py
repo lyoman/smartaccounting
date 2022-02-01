@@ -84,9 +84,9 @@ class NewStockListAPIView(ListAPIView):
 
     def get_queryset(self):
         queryset = NewStock.objects.filter(active=True)
-        id = self.request.query_params.get('id', None)
+        id = self.request.query_params.get('user', None)
         if id is not None:
-            queryset = queryset.filter(id=id)
+            queryset = queryset.filter(user_id=id)
             print("hey you", queryset)
         return queryset
 
@@ -137,5 +137,21 @@ class SoldStockListAPIView(ListAPIView):
         id = self.request.query_params.get('stockname', None)
         if id is not None:
             queryset = queryset.filter(stockname_id=id)
+            print("hey you", queryset)
+        return queryset
+
+
+class SoldStockUserListAPIView(ListAPIView):
+    serializer_class = SoldStockListSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['name']
+    # pagination_class = NewStockPageNumberPagination
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        queryset = SoldStock.objects.filter()
+        id = self.request.query_params.get('user', None)
+        if id is not None:
+            queryset = queryset.filter(user_id=id)
             print("hey you", queryset)
         return queryset
