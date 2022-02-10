@@ -24,8 +24,7 @@ class UserCreateSerializer(ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'role',
-            'designation',
+            'business',
             'password',
             
         ]
@@ -74,8 +73,7 @@ class UserDetailSerializer(ModelSerializer):
             'first_name',
             'last_name',
             'phone_number',
-            'role',
-            'designation',
+            'business',
             'is_active',
             'is_staff',
             'is_superuser',

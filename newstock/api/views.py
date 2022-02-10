@@ -129,7 +129,7 @@ class SoldStockListAPIView(ListAPIView):
     serializer_class = SoldStockListSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['name']
-    pagination_class = NewStockPageNumberPagination
+    # pagination_class = NewStockPageNumberPagination
     permission_classes = [AllowAny]
 
     def get_queryset(self):
