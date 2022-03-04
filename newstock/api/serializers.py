@@ -14,8 +14,16 @@ from django.db import models
 from django.conf import settings
 
 
+def user_directory_path(instance, filename):
+  
+    # file will be uploaded to MEDIA_ROOT / user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
+
+
 class NewStockCreateUpdateSerializer(ModelSerializer):
     user 		    = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.CASCADE)
+    invoice        = models.ImageField(upload_to = user_directory_path)
+
     class Meta:
         model = NewStock
         fields = [
@@ -23,6 +31,7 @@ class NewStockCreateUpdateSerializer(ModelSerializer):
             'user',
             'name',
             'description',
+            'invoice',
             'quantity',
             'amount'
         ]
@@ -47,6 +56,7 @@ class NewStockDetailSerializer(ModelSerializer):
             'description',
             'quantity',
             'amount',
+            'invoice',
             'active',
             'updated',
             'timestamp'
@@ -69,6 +79,7 @@ class NewStockListSerializer(ModelSerializer):
             'name',
             'description',
             'active',
+            'invoice',
             'amount',
             'quantity',
             'updated',
@@ -79,7 +90,6 @@ class NewStockListSerializer(ModelSerializer):
 #####Process flow Charts
 class SoldStockCreateUpdateSerializer(ModelSerializer):
     user 		    = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete = models.CASCADE)
-
     class Meta:
         model = SoldStock
         fields = [
@@ -102,7 +112,6 @@ soldstock_detail_url = HyperlinkedIdentityField(
 class SoldStockDetailSerializer(ModelSerializer):
     url = soldstock_detail_url
     user = UserDetailSerializer(read_only=True)
-    stockname = NewStockDetailSerializer(read_only=True)
 
     class Meta:
         model = SoldStock
@@ -116,6 +125,7 @@ class SoldStockDetailSerializer(ModelSerializer):
             'stockname',
             'total_amount',
             'quantity',
+            'active',
             'updated',
             'timestamp'
         ]
@@ -123,7 +133,6 @@ class SoldStockDetailSerializer(ModelSerializer):
 class SoldStockListSerializer(ModelSerializer):
     url = soldstock_detail_url
     user    =   UserDetailSerializer(read_only=True)
-    stockname = NewStockDetailSerializer(read_only=True)
     delete_url = HyperlinkedIdentityField(
         view_name='newstock-api:delete_sold',
         lookup_field='id'#or primary key <pk>
@@ -141,6 +150,7 @@ class SoldStockListSerializer(ModelSerializer):
             'description',
             'amount',
             'total_amount',
+            'active',
             'updated',
             'timestamp'
         ]

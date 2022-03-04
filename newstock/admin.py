@@ -3,9 +3,9 @@ from . models import NewStock, SoldStock
 
 # Register your models here.
 class NewStockModelAdmin(admin.ModelAdmin):
-    list_display        = ["user","name", "quantity", "amount", "active", "description", "timestamp", "updated"]
+    list_display        = ["user","name", "quantity", "amount", "active", "description", "invoice", "timestamp", "updated"]
     list_display_links  = ["updated", "timestamp", "user", "quantity"]
-    list_editable       = ["name", "amount", "active"]
+    list_editable       = ["name", "amount", "active", "invoice"]
     list_filter         = ["updated", "timestamp", "description"]
     search_fields       = ["name", "description"]
     class Meta:
